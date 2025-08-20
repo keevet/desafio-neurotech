@@ -1,0 +1,1 @@
+INSERT INTO produtos ( nome, descricao, preco, quantidade_estoque) VALUES ('Pente de cabelo', 'Pente bem fininho pra cabelo', 5.0, 2)
