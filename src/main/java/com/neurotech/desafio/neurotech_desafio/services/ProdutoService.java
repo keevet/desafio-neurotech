@@ -4,6 +4,10 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -72,6 +76,25 @@ public class ProdutoService{
 
     produtoRepository.deleteById(id);
     
+    }
+
+
+     @Transactional(readOnly = true)
+    public Page<ProdutoMinDTO> findAllPaged(
+            String nome,
+            int page,
+            int size,
+            String sort,
+            String direction) {
+
+        Sort.Direction dir = Sort.Direction.fromString(direction);
+        Pageable pageable = PageRequest.of(page, size, Sort.by(dir, sort));
+
+        Page<Produto> result = (nome != null && !nome.isBlank())
+                ? produtoRepository.findByNomeContainingIgnoreCase(nome, pageable)
+                : produtoRepository.findAll(pageable);
+
+        return result.map(ProdutoMinDTO::new);
     }
 
 }
