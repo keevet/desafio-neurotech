@@ -5,6 +5,7 @@ import java.net.URI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,8 +21,11 @@ import com.neurotech.desafio.neurotech_desafio.dto.ProdutoDTO;
 import com.neurotech.desafio.neurotech_desafio.dto.ProdutoMinDTO;
 import com.neurotech.desafio.neurotech_desafio.services.ProdutoService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping(value = "/produtos")
+@Validated
 public class ProdutoController{
 
     @Autowired
@@ -47,7 +51,7 @@ public class ProdutoController{
     }
 
     @PostMapping
-    public ResponseEntity<ProdutoDTO> insert(@RequestBody ProdutoDTO dto) {
+    public ResponseEntity<ProdutoDTO> insert(@Valid @RequestBody ProdutoDTO dto) {
         ProdutoDTO newDto = produtoService.insert(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                         .path("/{id}")
@@ -57,7 +61,7 @@ public class ProdutoController{
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<ProdutoDTO> update(@PathVariable Long id, @RequestBody ProdutoDTO dto) {
+    public ResponseEntity<ProdutoDTO> update(@PathVariable Long id, @Valid @RequestBody ProdutoDTO dto) {
         ProdutoDTO updatedDto = produtoService.update(id, dto);
         return ResponseEntity.ok(updatedDto);
     }
