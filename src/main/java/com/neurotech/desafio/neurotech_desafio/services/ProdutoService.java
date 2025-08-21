@@ -45,6 +45,27 @@ public class ProdutoService{
         return new ProdutoDTO(entity);
     }
 
+    @Transactional
+    public ProdutoDTO update(Long id, ProdutoDTO dto) {
+    
+    Produto entity = produtoRepository.findById(id).orElse(new Produto());
+
+    if (dto.getNome() != null) {
+        entity.setNome(dto.getNome());
+    }
+    if (dto.getDescricao() != null) {
+        entity.setDescricao(dto.getDescricao());
+    }
+    if (dto.getPreco() != null) {
+        entity.setPreco(dto.getPreco());
+    }
+    if (dto.getQuantidadeEstoque() != null) {
+        entity.setQuantidadeEstoque(dto.getQuantidadeEstoque());
+    }
+
+    entity = produtoRepository.save(entity);
+    return new ProdutoDTO(entity);
+    }
      
     
 
