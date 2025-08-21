@@ -22,6 +22,9 @@ import com.neurotech.desafio.neurotech_desafio.dto.ProdutoMinDTO;
 import com.neurotech.desafio.neurotech_desafio.services.ProdutoService;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Pattern;
 
 @RestController
 @RequestMapping(value = "/produtos")
@@ -35,10 +38,10 @@ public class ProdutoController{
      @GetMapping
     public Page<ProdutoMinDTO> findAll(
         @RequestParam(required = false) String nome,
-        @RequestParam(defaultValue = "0") int page,
-        @RequestParam(defaultValue = "10") int size,
+        @RequestParam(defaultValue = "0") @Min(value = 0, message = "page deve ser >= 0") int page,
+        @RequestParam(defaultValue = "10") @Min(1) @Max(100) int size,
         @RequestParam(defaultValue = "preco") String sort,
-        @RequestParam(defaultValue = "asc") String direction
+        @RequestParam(defaultValue = "asc") @Pattern(regexp = "(?i)asc|desc", message = "direction deve ser asc ou desc") String direction
     ) {
         return produtoService.findAllPaged(nome, page, size, sort, direction);
     }
