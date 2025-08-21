@@ -1,5 +1,6 @@
 package com.neurotech.desafio.neurotech_desafio.services;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,4 +32,20 @@ public class ProdutoService{
         return result.stream().map(x -> new ProdutoMinDTO(x)).toList();
 
     }
+
+    @Transactional
+    public ProdutoDTO insert(ProdutoDTO dto) {
+        Produto entity = new Produto();
+        entity.setNome(dto.getNome());
+        entity.setDescricao(dto.getDescricao());
+        entity.setPreco(dto.getPreco());
+        entity.setQuantidadeEstoque(dto.getQuantidadeEstoque());
+        entity.setDataCriacao(LocalDateTime.now());
+        entity = produtoRepository.save(entity);
+        return new ProdutoDTO(entity);
+    }
+
+     
+    
+
 }
