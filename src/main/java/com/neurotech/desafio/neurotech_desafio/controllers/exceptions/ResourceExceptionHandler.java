@@ -12,6 +12,7 @@ import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+import org.springframework.web.servlet.NoHandlerFoundException;
 
 import com.neurotech.desafio.neurotech_desafio.services.exceptions.ResourceNotFoundException;
 
@@ -96,4 +97,19 @@ public class ResourceExceptionHandler {
         StandardError err = new StandardError(Instant.now(), status.value(), "Internal Server Error", e.getMessage(), req.getRequestURI());
         return ResponseEntity.status(status).body(err);
     }
+
+    
+
+    @ExceptionHandler(NoHandlerFoundException.class)
+    public ResponseEntity<StandardError> handleNoHandlerFound(NoHandlerFoundException e, HttpServletRequest req) {
+        var status = HttpStatus.NOT_FOUND;
+        var err = new StandardError(
+        Instant.now(),
+        status.value(),
+        "Not Found",
+        "Endpoint não encontrado",
+        req.getRequestURI()
+    );
+    return ResponseEntity.status(status).body(err);
+}
 }
