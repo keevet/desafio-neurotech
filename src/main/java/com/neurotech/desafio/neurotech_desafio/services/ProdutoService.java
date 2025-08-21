@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -15,6 +16,7 @@ import com.neurotech.desafio.neurotech_desafio.dto.ProdutoDTO;
 import com.neurotech.desafio.neurotech_desafio.dto.ProdutoMinDTO;
 import com.neurotech.desafio.neurotech_desafio.entities.Produto;
 import com.neurotech.desafio.neurotech_desafio.repositories.ProdutoRepository;
+import com.neurotech.desafio.neurotech_desafio.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class ProdutoService{
@@ -25,8 +27,8 @@ public class ProdutoService{
     @Transactional(readOnly = true)
     public ProdutoDTO findById(Long id){
 
-        Produto produto = produtoRepository.findById(id).get();
-
+        Produto produto = produtoRepository.findById(id)
+            .orElseThrow(() -> new ResourceNotFoundException("Produto não encontrado: " + id));
         return new ProdutoDTO(produto);
     }
 
@@ -52,7 +54,8 @@ public class ProdutoService{
     @Transactional
     public ProdutoDTO update(Long id, ProdutoDTO dto) {
     
-    Produto entity = produtoRepository.findById(id).orElse(new Produto());
+    Produto entity = produtoRepository.findById(id)
+        .orElseThrow(() -> new ResourceNotFoundException("Produto não encontrado: " + id));
 
     if (dto.getNome() != null) {
         entity.setNome(dto.getNome());
@@ -74,7 +77,11 @@ public class ProdutoService{
     @Transactional
     public void delete(Long id) {
 
-    produtoRepository.deleteById(id);
+    try {
+            produtoRepository.deleteById(id);
+        } catch (EmptyResultDataAccessException e) {
+            throw new ResourceNotFoundException("Produto não encontrado: " + id);
+        }
     
     }
 
