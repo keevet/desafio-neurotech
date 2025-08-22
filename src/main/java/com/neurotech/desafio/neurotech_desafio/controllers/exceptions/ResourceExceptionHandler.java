@@ -102,8 +102,8 @@ public class ResourceExceptionHandler {
 
     @ExceptionHandler(NoHandlerFoundException.class)
     public ResponseEntity<StandardError> handleNoHandlerFound(NoHandlerFoundException e, HttpServletRequest req) {
-        var status = HttpStatus.NOT_FOUND;
-        var err = new StandardError(
+        HttpStatus status = HttpStatus.NOT_FOUND;
+        StandardError err = new StandardError(
         Instant.now(),
         status.value(),
         "Not Found",
