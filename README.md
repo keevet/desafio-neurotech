@@ -84,3 +84,64 @@ Username: admin
 Password: neurotech
 
 ```
+
+
+▶️ Executando o Projeto 
+
+### Pré-requisitos
+- **Java 17**
+- **Maven 3.9+**
+- **Docker** **Engine**
+- Banco de dados:
+  - **H2 em memória** (default, para testes/dev)  
+  - ou **MySQL** (para execução em modo prod)
+### Passos
+1. **Clonar o repositório
+   ```bash
+   git clone https://github.com/seu-usuario/neurotech-desafio.git
+   cd neurotech-desafio
+   ```
+2. **Alterar o compose para test**
+
+```yaml
+version: "3.9"
+
+services:
+
+  api:
+
+    build:
+
+      context: .
+
+      dockerfile: Dockerfile
+
+    image: neurotech/desafio-api:latest
+
+    container_name: desafio-api
+
+    ports:
+
+      - "8080:8080"
+
+    environment:
+
+      SPRING_PROFILES_ACTIVE: test -- Altere aqui
+
+      JWT_SECRET: ${JWT_SECRET:-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855}
+
+      JWT_EXPIRATION_MS: 3600000
+
+      CORS_ORIGINS: "http://localhost:3000,http://localhost:5173"
+
+      SERVER_PORT: 8080
+
+      TZ: America/Recife
+
+    restart: unless-stopped
+```
+
+3. E então build o projeto
+```
+docker compose build && docker compose up -d 
+```

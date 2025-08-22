@@ -6,6 +6,7 @@ import org.springframework.beans.BeanUtils;
 
 import com.neurotech.desafio.neurotech_desafio.entities.Produto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -14,6 +15,7 @@ import jakarta.validation.constraints.PositiveOrZero;
 
 public class ProdutoDTO {
 
+    @Schema(hidden = true)
     private Long id;
 
     @NotBlank(message = "Nome é obrigatório")
@@ -27,6 +29,8 @@ public class ProdutoDTO {
     @NotNull(message = "Quantidade em estoque é obrigatória")
     @PositiveOrZero(message = "Quantidade em estoque deve ser zero ou positiva")
     private Integer quantidadeEstoque;
+
+    @Schema(hidden = true)
     private LocalDateTime dataCriacao;
 
     public ProdutoDTO(Produto entity){
