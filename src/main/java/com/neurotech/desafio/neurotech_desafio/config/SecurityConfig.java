@@ -24,7 +24,7 @@ public class SecurityConfig {
   @Bean
   UserDetailsService userDetailsService(PasswordEncoder encoder) {
     UserDetails user = User.withUsername("admin")
-        .password(encoder.encode("admin123"))
+        .password(encoder.encode("neurotech"))
         .roles("USER")
         .build();
     return new InMemoryUserDetailsManager(user);
