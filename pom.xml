@@ -3,10 +3,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.5.4</version>
-		<relativePath/> <!-- lookup parent from repository -->
+  	  <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-parent</artifactId>
+      <version>3.3.2</version>
+      <relativePath/>
 	</parent>
 	<groupId>com.neurotech.desafio</groupId>
 	<artifactId>neurotech_desafio</artifactId>
@@ -83,6 +83,11 @@
 		    <artifactId>jjwt-jackson</artifactId>
 		    <version>0.11.5</version>
 		    <scope>runtime</scope>
+		</dependency>
+		<dependency>
+  			<groupId>org.springdoc</groupId>
+  			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+  			<version>2.5.0</version>
 		</dependency>
 	</dependencies>
 
