@@ -1,1 +1,20 @@
-INSERT INTO produtos ( nome, descricao, preco, quantidade_estoque) VALUES ('Pente de cabelo', 'Pente bem fininho pra cabelo', 5.0, 2)
+INSERT INTO produtos (nome, descricao, preco, quantidade_estoque) VALUES ('Notebook Dell Inspiron 15', 'Notebook com processador i5, 8GB RAM e SSD 256GB', 3500.00, 10);
+INSERT INTO produtos (nome, descricao, preco, quantidade_estoque) VALUES ('Smartphone Samsung Galaxy S23', 'Celular 128GB com câmera tripla de 50MP', 4200.00, 15);
+INSERT INTO produtos (nome, descricao, preco, quantidade_estoque) VALUES ('Cadeira Gamer Redragon', 'Cadeira ergonômica reclinável com apoio para braços', 950.00, 7);
+INSERT INTO produtos (nome, descricao, preco, quantidade_estoque) VALUES ('Monitor LG UltraWide 29"', 'Monitor 29 polegadas Full HD UltraWide HDMI', 1250.00, 12);
+INSERT INTO produtos (nome, descricao, preco, quantidade_estoque) VALUES ('Teclado Mecânico HyperX Alloy', 'Teclado mecânico RGB com switches red', 550.00, 25);
+INSERT INTO produtos (nome, descricao, preco, quantidade_estoque) VALUES ('Headset Logitech G733', 'Headset sem fio com microfone e iluminação RGB', 799.90, 18);
+INSERT INTO produtos (nome, descricao, preco, quantidade_estoque) VALUES ('Mouse Razer DeathAdder V2', 'Mouse gamer 20.000 DPI com iluminação Chroma', 380.00, 30);
+INSERT INTO produtos (nome, descricao, preco, quantidade_estoque) VALUES ('Impressora HP DeskJet 2776', 'Impressora multifuncional colorida Wi-Fi', 420.00, 8);
+INSERT INTO produtos (nome, descricao, preco, quantidade_estoque) VALUES ('Smart TV LG 55"', 'Smart TV 55 polegadas 4K UHD com WebOS', 3100.00, 5);
+INSERT INTO produtos (nome, descricao, preco, quantidade_estoque) VALUES ('HD Externo Seagate 2TB', 'HD portátil USB 3.0 de 2TB', 520.00, 20);
+INSERT INTO produtos (nome, descricao, preco, quantidade_estoque) VALUES ('SSD NVMe Kingston 1TB', 'SSD NVMe PCIe 3.0 de 1TB', 410.00, 22);
+INSERT INTO produtos (nome, descricao, preco, quantidade_estoque) VALUES ('Roteador TP-Link Archer AX50', 'Roteador Wi-Fi 6 dual band gigabit', 699.00, 14);
+INSERT INTO produtos (nome, descricao, preco, quantidade_estoque) VALUES ('Kindle Paperwhite 11ª Geração', 'Leitor digital com iluminação ajustável', 699.90, 9);
+INSERT INTO produtos (nome, descricao, preco, quantidade_estoque) VALUES ('Cafeteira Nespresso Essenza Mini', 'Cafeteira de cápsulas compacta 19 bar', 499.00, 11);
+INSERT INTO produtos (nome, descricao, preco, quantidade_estoque) VALUES ('Air Fryer Mondial 4L', 'Fritadeira elétrica sem óleo 1500W', 439.90, 16);
+INSERT INTO produtos (nome, descricao, preco, quantidade_estoque) VALUES ('Soundbar JBL 2.1', 'Soundbar com subwoofer sem fio 300W', 1499.00, 6);
+INSERT INTO produtos (nome, descricao, preco, quantidade_estoque) VALUES ('Webcam Logitech C920', 'Webcam Full HD com microfone estéreo', 399.00, 19);
+INSERT INTO produtos (nome, descricao, preco, quantidade_estoque) VALUES ('Suporte Articulado para Monitor', 'Suporte VESA 13" a 32" com regulagem de altura', 239.90, 27);
+INSERT INTO produtos (nome, descricao, preco, quantidade_estoque) VALUES ('Carregador Portátil 20.000mAh', 'Power bank com duas saídas USB e USB-C', 189.90, 34);
+INSERT INTO produtos (nome, descricao, preco, quantidade_estoque) VALUES ('Cabo HDMI 2.1 2m', 'Cabo HDMI 48Gbps compatível com 4K/120Hz e 8K', 59.90, 50);
