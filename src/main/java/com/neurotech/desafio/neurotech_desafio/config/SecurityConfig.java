@@ -30,7 +30,10 @@ public class SecurityConfig {
     return new InMemoryUserDetailsManager(user);
   }
 
-  @Bean PasswordEncoder passwordEncoder() { return new BCryptPasswordEncoder(); }
+  @Bean
+  PasswordEncoder passwordEncoder() {
+    return new BCryptPasswordEncoder();
+  }
 
   @Bean
   AuthenticationManager authenticationManager(AuthenticationConfiguration cfg) throws Exception {
@@ -38,10 +41,7 @@ public class SecurityConfig {
   }
 
   @Bean
-  SecurityFilterChain securityFilterChain(
-      HttpSecurity http,
-      JwtAuthenticationFilter jwtFilter
-  ) throws Exception {
+  SecurityFilterChain securityFilterChain(HttpSecurity http, JwtAuthenticationFilter jwtFilter) throws Exception {
     http
       .csrf(csrf -> csrf.disable())
       .cors(Customizer.withDefaults())
@@ -49,6 +49,12 @@ public class SecurityConfig {
           org.springframework.security.config.http.SessionCreationPolicy.STATELESS))
       .authorizeHttpRequests(auth -> auth
           .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+          .requestMatchers(
+              "/swagger-ui/**",
+              "/swagger-ui.html",
+              "/v3/api-docs/**",
+              "/actuator/health"
+          ).permitAll()
           .requestMatchers("/auth/login").permitAll()
           .requestMatchers("/produtos/**").authenticated()
           .anyRequest().permitAll()
